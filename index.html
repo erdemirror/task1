@@ -3,14 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScript Concepts</title>
+    <title>task1</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
       <h1>Today we are going to learn about JavaScript</h1>
     </header>
-
+    <nav>
+      <a href="index.html">JavaScript</a>
+      <a href="react.html">React</a>
+    </nav>
     <div class="tasks">
       <p>Here are the tasks to do:</p>
       <ul>
@@ -23,10 +26,7 @@
     <div class="topics">
       <div class="datatypes">
         <h2>Datatypes</h2>
-        <p>
-          JavaScript has <strong>8 primary data</strong> types. These are used
-          to store different kinds of values:
-        </p>
+        <p>JavaScript 8 ширхэг өгөгдлийн төрөлтэй:</p>
         <ol>
           <li><strong>String</strong> - Example: <code>"Hello"</code></li>
           <li><strong>Number</strong> - Example: <code>42, 3.14</code></li>
@@ -46,25 +46,26 @@
             <code>{ name: "Erdem", age: 20 }</code>
           </li>
         </ol>
+        Ерөнхий ойлгомжтой гэж бодож байна.
       </div>
 
       <div class="functions">
         <h2>Functions</h2>
         <p>
-          A JavaScript function is a block of code designed to perform a task.
+          JavaScript функц нь даалгаврыг гүйцэтгэхэд зориулагдсан кодын блок.
         </p>
-        <p>It is executed when "something" invokes (calls) it.</p>
+        <p>Дуудагдаж байж ажиллана.</p>
 
-        <pre><code>// Multiply two numbers
+        <pre><code>// 2 тоо үржих
 function myFunction(p1, p2) {
   return p1 * p2;
 }</code></pre>
 
-        <pre><code>// Convert Fahrenheit to Celsius
+        <pre><code>// F to C
 function toCelsius(fahrenheit) {
   return (5/9) * (fahrenheit-32);
 }
-
+// хувьсагчид утга аа олгох 
 let value = toCelsius(100);</code></pre>
       </div>
     </div>
@@ -74,12 +75,11 @@ let value = toCelsius(100);</code></pre>
       <img src="./images/pic1.png" alt="promises" />
 
       <p>
-        A <strong>Promise</strong> is a JavaScript object that represents the
-        eventual completion (or failure) of an asynchronous operation and its
-        resulting value.
+        A <strong>Promise</strong> ямар нэгэн үйлдэл дуусахад , эсвэл
+        бүтэлгүйтэхийг илэрхийлдэг object юм аа
       </p>
 
-      <h3>Creating a Promise</h3>
+      <h3>Үүсгэх</h3>
       <pre><code>
 const myPromise = new Promise((resolve, reject) => {
   let success = true;
@@ -91,6 +91,10 @@ const myPromise = new Promise((resolve, reject) => {
 });</code></pre>
 
       <h3>Using <code>.then()</code> and <code>.catch()</code></h3>
+
+      Өмнөхөөсөө ялгаатай нь <code>.then()</code> нь Chaining хийхэд амар
+      болгочихож байна гэж ойлгоод байгаа
+
       <pre><code>
 myPromise
   .then(result => {
@@ -101,20 +105,30 @@ myPromise
   });</code></pre>
 
       <h3>Chaining Promises</h3>
+
+      Promise chaining гэдэг нь нэг promise амжилттай биелсний дараа дараагийн
+      promise руу шилжих гэсэн үг.Хэрэглэснээр код илүү засахад амар , эмх
+      цэгцтэй болдог.
+
       <pre><code>
-fetch('https://api.example.com/data')
-  .then(response => response.json())
-  .then(data => {
-    console.log("Data:", data);
-    return fetch('https://api.example.com/next');
-  })
-  .then(next => next.json())
-  .then(nextData => {
-    console.log("Next data:", nextData);
-  })
-  .catch(error => console.error(error));</code></pre>
+fetch('https://api.example.com/user')
+    .then(response => response.json())         // 1-р promise
+    .then(user => {
+        console.log(user);
+        return fetch(`https://api.example.com/posts?user=${user.id}`);
+    })                                         // 2-р promise
+    .then(response => response.json())
+    .then(posts => {
+        console.log('Нийтлэлүүд:', posts);       // 3-р promise
+    })
+    .catch(error => {
+    console.error('Алдаа:', error);
+    });
+      </code></pre>
 
       <h3>Promise.all</h3>
+      Promise-ийн нэг функц бөгөөд олон амлалт (promises)-ыг зэрэг (нэгэн зэрэг)
+      гүйцэтгүүлж, бүгд амжилттай дуусахыг нэг дор хүлээдэг.
       <pre><code>
 const p1 = fetch('/api/user');
 const p2 = fetch('/api/products');
@@ -126,13 +140,6 @@ Promise.all([p1, p2])
     console.log("Products:", products);
   })
   .catch(error => console.error("Error in one of the requests:", error));</code></pre>
-
-      <h3>Why Use Promises?</h3>
-      <ul>
-        <li>Clean error handling with <code>.catch()</code></li>
-        <li>Prevents "callback hell"</li>
-        <li>Improves readability and maintenance</li>
-      </ul>
     </div>
   </body>
 </html>

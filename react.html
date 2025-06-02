@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>React Concepts - Detailed</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to React Concepts</h1>
+    </header>
+
+    <nav>
+      <a href="index.html">JavaScript</a> |
+      <a href="react.html">React</a>
+    </nav>
+
+    <main>
+      <h2>React Hooks and Concepts - Detailed Explanation</h2>
+
+      <section>
+        <h3>useState</h3>
+        <p>
+          <code>useState</code> is a React Hook that lets functional components
+          hold and manage state — something that was only possible in class
+          components before hooks. When you use <code>useState</code>, it
+          returns an array with two elements: the current state value and a
+          function to update that state.
+        </p>
+        <p>Example:</p>
+        <pre><code>const [count, setCount] = useState(0);
+
+// <code>count</code> holds the current value (0 initially)
+// <code>setCount</code> is a function that updates the value
+setCount(count + 1); // Updates count to 1</code></pre>
+        <p>
+          This causes the component to re-render with the updated state. Unlike
+          directly modifying variables, <code>useState</code> ensures the UI
+          stays in sync with your data.
+        </p>
+      </section>
+
+      <section>
+        <h3>useEffect</h3>
+        <p>
+          <code>useEffect</code> is a hook used for handling side effects in
+          functional components. Side effects include things like:
+        </p>
+        <ul>
+          <li>Fetching data from APIs</li>
+          <li>Setting up subscriptions or event listeners</li>
+          <li>Manually manipulating the DOM</li>
+          <li>Timers and intervals</li>
+        </ul>
+        <p>
+          The first argument to <code>useEffect</code> is a function containing
+          the side-effect code. React runs this function after the component
+          renders.
+        </p>
+        <p>
+          The second argument is an optional dependency array. React only runs
+          the effect again if one of the dependencies changes. If you pass an
+          empty array <code>[]</code>, the effect runs only once after the
+          initial render (like <code>componentDidMount</code>).
+        </p>
+        <p>Example:</p>
+        <pre><code>useEffect(() => {
+  console.log('Component mounted');
+  // Fetch data or set up subscriptions here
+  
+  return () => {
+    console.log('Cleanup on unmount');
+    // Cleanup code runs when component unmounts or before next effect runs
+  };
+}, []);</code></pre>
+      </section>
+
+      <section>
+        <h3>useReducer</h3>
+        <p>
+          <code>useReducer</code> is a React hook that lets you manage more
+          complex state logic than <code>useState</code>. It is inspired by
+          Redux’s reducer pattern.
+        </p>
+        <p>
+          With <code>useReducer</code>, you define a
+          <strong>reducer function</strong> that receives the current state and
+          an <strong>action</strong>, then returns the new state.
+        </p>
+        <p>Usage:</p>
+        <pre><code>const [state, dispatch] = useReducer(reducer, initialState);
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+}
+
+dispatch({ type: 'increment' }); // Dispatches action to update state</code></pre>
+        <p>
+          This pattern helps when you have state that depends on previous state
+          or involves multiple related values. It’s especially useful for
+          complex forms or multi-step workflows.
+        </p>
+      </section>
+
+      <section>
+        <h3>use</h3>
+        <p>
+          <code>use</code> is an experimental React hook designed to handle
+          promises and asynchronous data in components more seamlessly.
+        </p>
+        <p>
+          It integrates with <strong>React Suspense</strong> to let components
+          “wait” for asynchronous data before rendering, enabling smoother
+          loading states.
+        </p>
+        <p>
+          Currently, <code>use</code> is mostly used internally or in
+          experimental React features, but it represents the future of async
+          rendering in React.
+        </p>
+        <p>Example usage (experimental):</p>
+        <pre><code>const data = use(fetchData());
+
+// The component suspends rendering until fetchData() promise resolves</code></pre>
+      </section>
+
+      <section>
+        <h3>API (Application Programming Interface)</h3>
+        <p>
+          An API is a contract or set of rules that lets different software
+          systems communicate. In web development, APIs usually expose endpoints
+          that clients like browsers or mobile apps can request data from or
+          send data to.
+        </p>
+        <p>For example, a REST API might allow your React app to:</p>
+        <ul>
+          <li>Get a list of users</li>
+          <li>Submit a form</li>
+          <li>Fetch product details</li>
+        </ul>
+        <p>
+          APIs are essential for building dynamic apps that connect to servers,
+          databases, or third-party services.
+        </p>
+      </section>
+
+      <section>
+        <h3>Data Fetching</h3>
+        <p>
+          Data fetching means retrieving data from an API or server to use
+          inside your React app.
+        </p>
+        <p>Typical steps to fetch data:</p>
+        <ol>
+          <li>
+            Trigger the request when the component mounts using
+            <code>useEffect</code>.
+          </li>
+          <li>
+            Use <code>fetch()</code> or libraries like <code>axios</code> to
+            request data.
+          </li>
+          <li>
+            Store the data in a state variable (using <code>useState</code>).
+          </li>
+          <li>Render the UI based on the data.</li>
+        </ol>
+        <p>Example:</p>
+        <pre><code>import React, { useState, useEffect } from 'react';
+
+function UsersList() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('https://api.example.com/users')
+      .then(res =&gt; {
+        if (!res.ok) throw new Error('Network error');
+        return res.json();
+      })
+      .then(data =&gt; {
+        setUsers(data);
+        setLoading(false);
+      })
+      .catch(err =&gt; {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return &lt;p&gt;Loading...&lt;/p&gt;;
+  if (error) return &lt;p&gt;Error: {error}&lt;/p&gt;;
+
+  return (
+    &lt;ul&gt;
+      {users.map(user =&gt; (
+        &lt;li key={user.id}&gt;{user.name}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</code></pre>
+        <p>
+          This pattern allows your app to dynamically render data from external
+          sources.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
