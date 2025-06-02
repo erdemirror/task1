@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>React Concepts - Detailed</title>
+    <title>React-ийн ойлголтууд - Дэлгэрэнгүй</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <h1>Welcome to React Concepts</h1>
+      <h1>React</h1>
     </header>
 
     <nav>
@@ -17,61 +17,53 @@
     </nav>
 
     <main>
-      <h2>React Hooks and Concepts - Detailed Explanation</h2>
-
       <section>
         <h3>useState</h3>
         <p>
-          <code>useState</code> is a React Hook that lets functional components
-          hold and manage state — something that was only possible in class
-          components before hooks. When you use <code>useState</code>, it
-          returns an array with two elements: the current state value and a
-          function to update that state.
+          <code>useState</code> нь React-ийн нэг Hook бөгөөд компонентууд дотор
+          төлөв (state) хадгалах, удирдах боломжийг олгодог — өмнө нь зөвхөн
+          класс компонентуудад боломжтой байсан юм.
+          <code>useState</code> ашиглахад хоёр элементтэй массив буцаадаг:
+          одоогийн төлөв болон түүнийг шинэчлэх функц.
         </p>
-        <p>Example:</p>
+        <p>Жишээ:</p>
         <pre><code>const [count, setCount] = useState(0);
 
-// <code>count</code> holds the current value (0 initially)
-// <code>setCount</code> is a function that updates the value
-setCount(count + 1); // Updates count to 1</code></pre>
+// <code>count</code> нь одоогийн утгыг хадгална (эхэндээ 0)
+// <code>setCount</code> нь утгыг шинэчлэх функц
+setCount(count + 1); // count утгыг 1 болгоно</code></pre>
         <p>
-          This causes the component to re-render with the updated state. Unlike
-          directly modifying variables, <code>useState</code> ensures the UI
-          stays in sync with your data.
+          Энэ нь компонент update хийж, шинэчилсэн төлөв дээр суурилсан
+          интерфейс үүсэхэд хүргэнэ.
         </p>
       </section>
 
       <section>
         <h3>useEffect</h3>
         <p>
-          <code>useEffect</code> is a hook used for handling side effects in
-          functional components. Side effects include things like:
+          Маш энгийнээр тайлбарлая — useEffect гэдэг нь React-д ямар нэг “ажил”
+          (effect) хийхэд тусалдаг hook юм.
         </p>
         <ul>
-          <li>Fetching data from APIs</li>
-          <li>Setting up subscriptions or event listeners</li>
-          <li>Manually manipulating the DOM</li>
-          <li>Timers and intervals</li>
+          <li>Мэдээлэл серверээс татах</li>
+          <li>Таймер ажиллуулах</li>
+          <li>DOM(Document Object Model)-ыг гараар удирдах</li>
+          <li>Сэрэмжлүүлэг, event listener нэмэх</li>
         </ul>
         <p>
-          The first argument to <code>useEffect</code> is a function containing
-          the side-effect code. React runs this function after the component
-          renders.
+          React-д компонент бүр дахин зурдаг (render хийдэг), гэхдээ бид
+          тодорхой нэг удаа л хийх ёстой (жишээ нь серверээс мэдээлэл авах эсвэл
+          таймер эхлүүлэх) үйлдлийг дахин дахин хиймээргүй байдаг.
         </p>
-        <p>
-          The second argument is an optional dependency array. React only runs
-          the effect again if one of the dependencies changes. If you pass an
-          empty array <code>[]</code>, the effect runs only once after the
-          initial render (like <code>componentDidMount</code>).
-        </p>
-        <p>Example:</p>
+
+        <p>Жишээ:</p>
         <pre><code>useEffect(() => {
-  console.log('Component mounted');
-  // Fetch data or set up subscriptions here
+  console.log('Компонент суурилагдсан');
+  // Энд өгөгдөл татах эсвэл үзүүлэлт тохируулах
   
   return () => {
-    console.log('Cleanup on unmount');
-    // Cleanup code runs when component unmounts or before next effect runs
+    console.log('Компонент устах үед цэвэрлэх');
+    // Компонент устахад эсвэл дараагийн эффект эхлэхээс өмнө цэвэрлэх код ажиллана
   };
 }, []);</code></pre>
       </section>
@@ -79,16 +71,16 @@ setCount(count + 1); // Updates count to 1</code></pre>
       <section>
         <h3>useReducer</h3>
         <p>
-          <code>useReducer</code> is a React hook that lets you manage more
-          complex state logic than <code>useState</code>. It is inspired by
-          Redux’s reducer pattern.
+          <code>useReducer</code> нь <code>useState</code>-ээс илүү нарийн төлөв
+          удирдах боломжтой React hook юм. Энэ нь Redux-ийн reducer загвараас
+          санаа авч бүтээгдсэн.
         </p>
         <p>
-          With <code>useReducer</code>, you define a
-          <strong>reducer function</strong> that receives the current state and
-          an <strong>action</strong>, then returns the new state.
+          <code>useReducer</code> ашиглан та <strong>reducer функц</strong>-ийг
+          тодорхойлж өгдөг бөгөөд энэ функц одоогийн төлөв болон
+          <strong>action</strong> (үйлдэл)-ийг авч шинэ төлөв буцаадаг.
         </p>
-        <p>Usage:</p>
+        <p>Хэрэглэх жишээ:</p>
         <pre><code>const [state, dispatch] = useReducer(reducer, initialState);
 
 function reducer(state, action) {
@@ -102,78 +94,68 @@ function reducer(state, action) {
   }
 }
 
-dispatch({ type: 'increment' }); // Dispatches action to update state</code></pre>
+dispatch({ type: 'increment' }); // Үйлдлийг илгээж төлөв шинэчилнэ</code></pre>
         <p>
-          This pattern helps when you have state that depends on previous state
-          or involves multiple related values. It’s especially useful for
-          complex forms or multi-step workflows.
+          Энэхүү загвар нь өмнөх төлөв дээр тулгуурласан эсвэл олон холбоотой
+          утгуудтай төлөвтэй ажиллахад тохиромжтой. Тухайлбал, нарийн формууд
+          эсвэл олон шаттай процессуудад ашиглагддаг.
         </p>
       </section>
 
       <section>
         <h3>use</h3>
         <p>
-          <code>use</code> is an experimental React hook designed to handle
-          promises and asynchronous data in components more seamlessly.
+          <code>use</code> нь React-ийн туршилтын шатанд байгаа hook бөгөөд
+          амлалт (promise) болон асинхрон өгөгдлийг бүрэн дүүрэн удирдахад
+          зориулагдсан.
         </p>
         <p>
-          It integrates with <strong>React Suspense</strong> to let components
-          “wait” for asynchronous data before rendering, enabling smoother
-          loading states.
+          <strong>React Suspense</strong>-тэй хамтран асинхрон өгөгдлийг хүлээж
+          компонентыг илүү зөөлөн ачааллах боломжийг олгодог.
         </p>
         <p>
-          Currently, <code>use</code> is mostly used internally or in
-          experimental React features, but it represents the future of async
-          rendering in React.
+          Одоогоор <code>use</code> нь ихэвчлэн туршилтын болон дотоод React
+          онцлогт ашиглагдаж байгаа ч ирээдүйд асинхрон рендерийн гол хэсэг
+          болох төлөвтэй.
         </p>
-        <p>Example usage (experimental):</p>
+        <p>Туршилтын жишээ:</p>
         <pre><code>const data = use(fetchData());
 
-// The component suspends rendering until fetchData() promise resolves</code></pre>
+// Компонент fetchData() амлалтыг гүйцэлдтэл хүлээдэг</code></pre>
       </section>
 
       <section>
         <h3>API (Application Programming Interface)</h3>
         <p>
-          An API is a contract or set of rules that lets different software
-          systems communicate. In web development, APIs usually expose endpoints
-          that clients like browsers or mobile apps can request data from or
-          send data to.
+          API гэдэг нь програм хооронд мэдээлэл солилцох. Веб хөгжүүлэлтэд API
+          нь ихэвчлэн сервер рүү хүсэлт илгээж, хариу авахад ашиглагддаг.
         </p>
-        <p>For example, a REST API might allow your React app to:</p>
-        <ul>
-          <li>Get a list of users</li>
-          <li>Submit a form</li>
-          <li>Fetch product details</li>
-        </ul>
+
         <p>
-          APIs are essential for building dynamic apps that connect to servers,
-          databases, or third-party services.
+          API-ууд сервер, өгөгдлийн сан, гуравдагч талын үйлчилгээтэй холбогддог
+          динамик програм бүтээхэд зайлшгүй хэрэгтэй.
         </p>
       </section>
 
       <section>
-        <h3>Data Fetching</h3>
+        <h3>Өгөгдөл татах (Data Fetching)</h3>
         <p>
-          Data fetching means retrieving data from an API or server to use
-          inside your React app.
+          Өгөгдөл татах гэдэг нь API эсвэл серверээс мэдээлэл авч ашиглах
+          процесс юм.
         </p>
-        <p>Typical steps to fetch data:</p>
+        <p>Ердийн алхмууд:</p>
         <ol>
           <li>
-            Trigger the request when the component mounts using
-            <code>useEffect</code>.
+            Компонент үүсэх үед <code>useEffect</code> ашиглан хүсэлт эхлүүлэх
           </li>
           <li>
-            Use <code>fetch()</code> or libraries like <code>axios</code> to
-            request data.
+            <code>fetch()</code> эсвэл <code>axios</code> зэрэг library ашиглан
+            өгөгдөл авах
           </li>
-          <li>
-            Store the data in a state variable (using <code>useState</code>).
-          </li>
-          <li>Render the UI based on the data.</li>
+          <li><code>useState</code> ашиглан өгөгдлийг төлөвд хадгалах</li>
+          <li>Өгөгдөлд тулгуурлан UI-г дүрслэх</li>
         </ol>
-        <p>Example:</p>
+        <p>Жишээ:</p>
         <pre><code>import React, { useState, useEffect } from 'react';
 
 function UsersList() {
@@ -184,7 +166,7 @@ function UsersList() {
   useEffect(() => {
     fetch('https://api.example.com/users')
       .then(res =&gt; {
-        if (!res.ok) throw new Error('Network error');
+        if (!res.ok) throw new Error('Сүлжээний алдаа');
         return res.json();
       })
       .then(data =&gt; {
@@ -197,8 +179,8 @@ function UsersList() {
       });
   }, []);
 
-  if (loading) return &lt;p&gt;Loading...&lt;/p&gt;;
-  if (error) return &lt;p&gt;Error: {error}&lt;/p&gt;;
+  if (loading) return &lt;p&gt;Ачааллаж байна...&lt;/p&gt;;
+  if (error) return &lt;p&gt;Алдаа: {error}&lt;/p&gt;;
 
   return (
     &lt;ul&gt;
@@ -209,8 +191,8 @@ function UsersList() {
   );
 }</code></pre>
         <p>
-          This pattern allows your app to dynamically render data from external
-          sources.
+          Энэ загвар нь таны апп-д гадаад эх сурвалжаас динамикаар өгөгдөл
+          дүрслэх боломж олгодог.
         </p>
       </section>
     </main>
