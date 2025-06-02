@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Concepts</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Today we are going to learn about JavaScript</h1>
+    </header>
+
+    <div class="tasks">
+      <p>Here are the tasks to do:</p>
+      <ul>
+        <li>Datatypes</li>
+        <li>Functions</li>
+        <li>Promises</li>
+      </ul>
+    </div>
+
+    <div class="topics">
+      <div class="datatypes">
+        <h2>Datatypes</h2>
+        <p>
+          JavaScript has <strong>8 primary data</strong> types. These are used
+          to store different kinds of values:
+        </p>
+        <ol>
+          <li><strong>String</strong> - Example: <code>"Hello"</code></li>
+          <li><strong>Number</strong> - Example: <code>42, 3.14</code></li>
+          <li>
+            <strong>BigInt</strong> - Example:
+            <code>12345678901234567890n</code>
+          </li>
+          <li>
+            <strong>Boolean</strong> - Example: <code>true</code>,
+            <code>false</code>
+          </li>
+          <li><strong>Undefined</strong> - Example: <code>let a;</code></li>
+          <li><strong>Null</strong> - Example: <code>let x = null;</code></li>
+          <li><strong>Symbol</strong> - Example: <code>Symbol("id")</code></li>
+          <li>
+            <strong>Object</strong> - Example:
+            <code>{ name: "Erdem", age: 20 }</code>
+          </li>
+        </ol>
+      </div>
+
+      <div class="functions">
+        <h2>Functions</h2>
+        <p>
+          A JavaScript function is a block of code designed to perform a task.
+        </p>
+        <p>It is executed when "something" invokes (calls) it.</p>
+
+        <pre><code>// Multiply two numbers
+function myFunction(p1, p2) {
+  return p1 * p2;
+}</code></pre>
+
+        <pre><code>// Convert Fahrenheit to Celsius
+function toCelsius(fahrenheit) {
+  return (5/9) * (fahrenheit-32);
+}
+
+let value = toCelsius(100);</code></pre>
+      </div>
+    </div>
+
+    <div class="promises">
+      <h2>Promises</h2>
+      <img src="./images/pic1.png" alt="promises" />
+
+      <p>
+        A <strong>Promise</strong> is a JavaScript object that represents the
+        eventual completion (or failure) of an asynchronous operation and its
+        resulting value.
+      </p>
+
+      <h3>Creating a Promise</h3>
+      <pre><code>
+const myPromise = new Promise((resolve, reject) => {
+  let success = true;
+  if (success) {
+    resolve("Success!");
+  } else {
+    reject("Error occurred.");
+  }
+});</code></pre>
+
+      <h3>Using <code>.then()</code> and <code>.catch()</code></h3>
+      <pre><code>
+myPromise
+  .then(result => {
+    console.log("Success:", result);
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });</code></pre>
+
+      <h3>Chaining Promises</h3>
+      <pre><code>
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => {
+    console.log("Data:", data);
+    return fetch('https://api.example.com/next');
+  })
+  .then(next => next.json())
+  .then(nextData => {
+    console.log("Next data:", nextData);
+  })
+  .catch(error => console.error(error));</code></pre>
+
+      <h3>Promise.all</h3>
+      <pre><code>
+const p1 = fetch('/api/user');
+const p2 = fetch('/api/products');
+
+Promise.all([p1, p2])
+  .then(responses => Promise.all(responses.map(r => r.json())))
+  .then(([user, products]) => {
+    console.log("User:", user);
+    console.log("Products:", products);
+  })
+  .catch(error => console.error("Error in one of the requests:", error));</code></pre>
+
+      <h3>Why Use Promises?</h3>
+      <ul>
+        <li>Clean error handling with <code>.catch()</code></li>
+        <li>Prevents "callback hell"</li>
+        <li>Improves readability and maintenance</li>
+      </ul>
+    </div>
+  </body>
+</html>
