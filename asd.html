@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destructuring Example</title>
+  </head>
+  <body>
+    <h1>Open the Console</h1>
+    <script>
+      const user = {
+        name: "Erdem",
+        age: 20,
+        location: "Yarmag",
+      };
+      //   console.log("Name:", name);
+      //   console.log("Age:", age);
+      //   console.log("Location:", userLocation);
+      const { name, age, location: userLocation } = user;
+      console.log("Name:", name);
+      console.log("Age:", age);
+      console.log("Location:", userLocation);
+
+      const numbers = [10, 20, 30];
+      //   console.log("First:", first);
+      //   console.log("Second:", second);
+      //   console.log("Third:", third);
+      const [first, second, third] = numbers;
+      console.log("Array Destructuring:");
+      console.log("First:", first);
+      console.log("Second:", second);
+      console.log("Third:", third);
+
+      const person = {
+        name: "sada",
+        address: {
+          city: "Niseh",
+          zip: "456123",
+        },
+      };
+
+      const {
+        address: { city, zip, country = "MGL" },
+      } = person;
+      console.log("Nested Destructuring:");
+      console.log("City:", city);
+      console.log("Zip:", zip);
+      console.log("Country:", country);
+
+      function greet({ name }) {
+        console.log(`Hello, ${name}!`);
+      }
+
+      greet(user);
+
+      function sum([a, b]) {
+        console.log(`Sum: ${a + b}`);
+      }
+
+      sum([5, 7]);
+    </script>
+  </body>
+</html>

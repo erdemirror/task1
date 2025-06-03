@@ -1,85 +1,74 @@
-/* Moving gradient background */
 body {
-  font-family: "Segoe UI", sans-serif;
   margin: 0;
   padding: 1rem;
+  font-family: "Segoe UI", sans-serif;
   color: #fff;
-  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #0f2027);
+  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
   background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
+  animation: bgMove 15s ease infinite;
 }
 
-@keyframes gradientBG {
-  0% {
+@keyframes bgMove {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
     background-position: 100% 50%;
   }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
-header {
-  background: linear-gradient(to right, #3f51b5, #5a55ae);
-  color: white;
-  padding: 1rem;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-nav {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 12px;
-  text-align: center;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-}
-nav a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 20px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  position: relative;
-}
-nav a::after {
-  content: "";
-  display: block;
-  height: 3px;
-  width: 0%;
-  background: #00e5ff;
-  transition: width 0.3s ease;
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-}
-nav a:hover::after {
-  width: 100%;
-}
-nav a:hover {
-  color: #00e5ff;
-}
-
-/* Content styling */
+header,
+nav,
 .tasks,
 .datatypes,
 .functions,
 .promises {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(6px);
   padding: 1rem;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
   margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+header {
+  background: linear-gradient(to right, #3f51b5, #5a55ae);
+}
+
+nav {
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+nav a {
   color: #fff;
+  margin: 0 20px;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: #00e5ff;
+  transition: width 0.3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a:hover {
+  color: #00e5ff;
 }
 
 .tasks ul {
-  list-style-type: disc;
   padding-left: 2rem;
+  list-style: disc;
 }
 
 .topics {
@@ -95,21 +84,47 @@ nav a:hover {
 
 img {
   max-width: 100%;
-  height: auto;
-  margin-bottom: 1rem;
   border-radius: 6px;
+  margin-bottom: 1rem;
 }
 
 pre {
-  background-color: #1e1e1e;
+  background: #1e1e1e;
   color: #00e5ff;
   padding: 1em;
   border-radius: 8px;
   overflow-x: auto;
-  margin: 1.5rem 0;
-  box-shadow: inset 0 0 5px rgba(0, 229, 255, 0.3);
 }
 
 code {
   font-family: "Fira Code", monospace;
+}
+
+.bracket {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bracket-columns {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.bracket-column {
+  flex: 1;
+  background: #2c99c46b;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: inset 0 0 5px rgba(31, 233, 255, 0.3);
+}
+ul {
+  text-align: left;
+  padding-left: 1.5rem;
+  list-style-position: outside;
 }
