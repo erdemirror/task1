@@ -47,6 +47,39 @@
           </li>
         </ol>
         Ерөнхий ойлгомжтой гэж бодож байна.
+
+        <div class="async">
+          <h2><code>async</code> and <code>await</code></h2>
+          <p>
+            "async and await нь promise-г бичихэд илүү амархан болгодог"<br />
+            async makes a function return a Promise <br />
+            await makes a function wait for as Promise
+          </p>
+          <h3>async syntax:</h3>
+          <pre><code>async function myFunction() { 
+        return "Hello"; 
+    }</code></pre>
+
+          <pre><code>function myFunction() {
+      return Promise.resolve("Hello");
+    }</code></pre>
+        </div>
+
+        <h3>await syntax:</h3>
+        <p>
+          The <code>await</code> нь зөвхөн <code>async</code> функц дотор
+          ашиглагдана. Функцийг түр зогсоож promise-г биелэхийг хүлээнэ.
+        </p>
+
+        <pre><code>
+    async function myDisplay() {
+      let myPromise = new Promise(function(resolve, reject) {
+        resolve("I love You !!");
+      });
+      document.getElementById("demo").innerHTML = await myPromise;
+    }
+        
+    myDisplay();</code></pre>
       </div>
 
       <div class="functions">
@@ -67,40 +100,42 @@ function toCelsius(fahrenheit) {
 }
 // хувьсагчид утга аа олгох 
 let value = toCelsius(100);</code></pre>
+
+        <p>
+          Функцуудыг мэддэг гэж бодсон ч мэддэггүй байж ээ. Arrow Функцийг
+          бичихийн хажуугаар бусад бичиглэлүүдийн ялгааг оруулахаар шийдлээ.
+        </p>
+
+        <pre><code>
+// Constructor
+const multiply = new Function("x", "y", "return x * y");
+
+// Declaration
+function multiply(x, y) {
+  return x * y;
+} // No need for semicolon here
+
+// Expression; the function is anonymous but assigned to a variable
+const multiply = function (x, y) {
+  return x * y;
+};
+
+// Expression; the function has its own name
+const multiply = function funcName(x, y) {
+  return x * y;
+};
+
+// Arrow function
+const multiply = (x, y) => x * y;
+
+// Method
+const obj = {
+  multiply(x, y) {
+    return x * y;
+  },
+};
+</code></pre>
       </div>
     </div>
-
-    <div class="async">
-      <h2><code>async</code> and <code>await</code></h2>
-      <p>
-        "async and await нь promise-г бичихэд илүү амархан болгодог"<br />
-        async makes a function return a Promise <br />
-        await makes a function wait for a Promise
-      </p>
-      <h3>async syntax:</h3>
-      <pre><code>async function myFunction() { 
-    return "Hello"; 
-}</code></pre>
-
-      <pre><code>function myFunction() {
-  return Promise.resolve("Hello");
-}</code></pre>
-    </div>
-
-    <h3>await syntax:</h3>
-    <p>
-      The <code>await</code> нь зөвхөн <code>async</code> функц дотор
-      ашиглагдана. Функцийг түр зогсоож promise-г биелэхийг хүлээнэ.
-    </p>
-
-    <pre><code>
-async function myDisplay() {
-  let myPromise = new Promise(function(resolve, reject) {
-    resolve("I love You !!");
-  });
-  document.getElementById("demo").innerHTML = await myPromise;
-}
-    
-myDisplay();</code></pre>
   </body>
 </html>
