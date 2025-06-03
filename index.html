@@ -70,76 +70,37 @@ let value = toCelsius(100);</code></pre>
       </div>
     </div>
 
-    <div class="promises">
-      <h2>Promises</h2>
-      <img src="./images/pic1.png" alt="promises" />
-
+    <div class="async">
+      <h2><code>async</code> and <code>await</code></h2>
       <p>
-        A <strong>Promise</strong> ямар нэгэн үйлдэл дуусахад , эсвэл
-        бүтэлгүйтэхийг илэрхийлдэг object юм аа
+        "async and await нь promise-г бичихэд илүү амархан болгодог"<br />
+        async makes a function return a Promise <br />
+        await makes a function wait for a Promise
       </p>
+      <h3>async syntax:</h3>
+      <pre><code>async function myFunction() { 
+    return "Hello"; 
+}</code></pre>
 
-      <h3>Үүсгэх</h3>
-      <pre><code>
-const myPromise = new Promise((resolve, reject) => {
-  let success = true;
-  if (success) {
-    resolve("Success!");
-  } else {
-    reject("Error occurred.");
-  }
-});</code></pre>
-
-      <h3>Using <code>.then()</code> and <code>.catch()</code></h3>
-
-      Өмнөхөөсөө ялгаатай нь <code>.then()</code> нь Chaining хийхэд амар
-      болгочихож байна гэж ойлгоод байгаа
-
-      <pre><code>
-myPromise
-  .then(result => {
-    console.log("Success:", result);
-  })
-  .catch(error => {
-    console.error("Error:", error);
-  });</code></pre>
-
-      <h3>Chaining Promises</h3>
-
-      Promise chaining гэдэг нь нэг promise амжилттай биелсний дараа дараагийн
-      promise руу шилжих гэсэн үг.Хэрэглэснээр код илүү засахад амар , эмх
-      цэгцтэй болдог.
-
-      <pre><code>
-fetch('https://api.example.com/user')
-    .then(response => response.json())         // 1-р promise
-    .then(user => {
-        console.log(user);
-        return fetch(`https://api.example.com/posts?user=${user.id}`);
-    })                                         // 2-р promise
-    .then(response => response.json())
-    .then(posts => {
-        console.log('Нийтлэлүүд:', posts);       // 3-р promise
-    })
-    .catch(error => {
-    console.error('Алдаа:', error);
-    });
-      </code></pre>
-
-      <h3>Promise.all</h3>
-      Promise-ийн нэг функц бөгөөд олон амлалт (promises)-ыг зэрэг (нэгэн зэрэг)
-      гүйцэтгүүлж, бүгд амжилттай дуусахыг нэг дор хүлээдэг.
-      <pre><code>
-const p1 = fetch('/api/user');
-const p2 = fetch('/api/products');
-
-Promise.all([p1, p2])
-  .then(responses => Promise.all(responses.map(r => r.json())))
-  .then(([user, products]) => {
-    console.log("User:", user);
-    console.log("Products:", products);
-  })
-  .catch(error => console.error("Error in one of the requests:", error));</code></pre>
+      <pre><code>function myFunction() {
+  return Promise.resolve("Hello");
+}</code></pre>
     </div>
+
+    <h3>await syntax:</h3>
+    <p>
+      The <code>await</code> нь зөвхөн <code>async</code> функц дотор
+      ашиглагдана. Функцийг түр зогсоож promise-г биелэхийг хүлээнэ.
+    </p>
+
+    <pre><code>
+async function myDisplay() {
+  let myPromise = new Promise(function(resolve, reject) {
+    resolve("I love You !!");
+  });
+  document.getElementById("demo").innerHTML = await myPromise;
+}
+    
+myDisplay();</code></pre>
   </body>
 </html>
