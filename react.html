@@ -4,35 +4,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>task2</title>
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              gradient: "gradient 12s ease infinite",
+            },
+            keyframes: {
+              gradient: {
+                "0%, 100%": {
+                  "background-position": "0% 50%",
+                },
+                "50%": {
+                  "background-position": "100% 50%",
+                },
+              },
+            },
+          },
+        },
+      };
+    </script>
   </head>
-  <body>
-    <header>
-      <h1>React</h1>
+  <body
+    class="m-0 p-4 font-sans text-white bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 bg-[length:400%_400%] animate-gradient min-h-screen"
+  >
+    <header class="p-4 rounded-lg mb-6 shadow-lg bg-black">
+      <h1 class="text-2xl font-bold">React</h1>
     </header>
 
-    <nav>
-      <a href="index.html">JavaScript</a> |
-      <a href="react.html">React</a>
+    <nav
+      class="p-4 rounded-lg mb-6 shadow-lg bg-black bg-opacity-50 text-center"
+    >
+      <a
+        href="index.html"
+        class="text-white mx-5 no-underline font-bold relative group transition-colors hover:text-cyan-400"
+      >
+        JavaScript
+        <span
+          class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"
+        ></span>
+      </a>
+      <a
+        href="react.html"
+        class="text-white mx-5 no-underline font-bold relative group transition-colors hover:text-cyan-400"
+      >
+        React
+        <span
+          class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"
+        ></span>
+      </a>
     </nav>
 
-    <main>
+    <main
+      class="flex-1 min-w-0 lg:basis-5/12 p-4 rounded-lg shadow-lg bg-black bg-opacity-30"
+    >
       <section>
-        <h3>useState</h3>
-        <p>
-          <code>useState</code> нь нэг Hook бөгөөд компонентууд дотор төлөв
-          (state) хадгалах, удирдах боломжийг олгодог — өмнө нь зөвхөн класс
-          компонентуудад боломжтой байсан юм. <code>useState</code> ашиглахад
-          хоёр элементтэй массив буцаадаг: одоогийн төлөв болон түүнийг шинэчлэх
-          функц.
+        <h3 class="text-xl font-bold mb-4">useState</h3>
+        <p class="mb-4">
+          <code class="bg-gray-800 px-1 rounded text-cyan-400">useState</code>
+          нь нэг Hook бөгөөд компонентууд дотор төлөв (state) хадгалах, удирдах
+          боломжийг олгодог — өмнө нь зөвхөн класс компонентуудад боломжтой
+          байсан юм.
+          <code class="bg-gray-800 px-1 rounded text-cyan-400">useState</code>
+          ашиглахад хоёр элементтэй массив буцаадаг: одоогийн төлөв болон
+          түүнийг шинэчлэх функц.
         </p>
-        <p>Жишээ:</p>
-        <pre><code>const [count, setCount] = useState(0);
+        <p class="mb-4">Жишээ:</p>
+        <pre
+          class="bg-gray-900 text-cyan-400 p-4 rounded-lg overflow-x-auto mb-4 font-mono"
+        ><code class="bg-gray-800 px-1 rounded text-cyan-400">const [count, setCount] = useState(0);
 
-// <code>count</code> нь одоогийн утгыг хадгална (эхэндээ 0)
-// <code>setCount</code> нь утгыг шинэчлэх функц    
+// <code class="bg-gray-800 px-1 rounded text-cyan-400">count</code> нь одоогийн утгыг хадгална (эхэндээ 0)
+// <code class="bg-gray-800 px-1 rounded text-cyan-400">setCount</code> нь утгыг шинэчлэх функц    
 setCount(count + 1); // count утгыг 1 болгоно</code></pre>
-        <p>
+        <p class="mb-4">
           Энэ нь компонент update хийж, шинэчилсэн төлөв дээр суурилсан
           интерфейс үүсэхэд хүргэнэ. Жишээ дээр харуулсан шиг оролтоос нэр
           оруулахад нарийг ашиглах гэх мэт.
@@ -40,24 +87,26 @@ setCount(count + 1); // count утгыг 1 болгоно</code></pre>
       </section>
 
       <section>
-        <h3>useEffect</h3>
-        <p>
+        <h3 class="text-2xl font-bold">useEffect</h3>
+        <p class="mb-4">
           Маш энгийнээр тайлбарлавал : useEffect гэдэг нь React-д ямар нэг
           “ажил” (effect) хийхэд тусалдаг hook юм.
         </p>
-        <ul>
+        <ul class="list-disc pl-8">
           <li>Data fetch хийх</li>
           <li>Timer ажиллуулах</li>
           <li>Alert, event listener нэмэх etc.</li>
         </ul>
-        <p>
+        <p class="mb-4">
           React-д компонент бүр дахин зурдаг (render хийдэг), гэхдээ бид
           тодорхой нэг удаа л хийх ёстой (жишээ нь серверээс мэдээлэл авах эсвэл
           timer эхлүүлэх) үйлдлийг дахин дахин хиймээргүй байдаг.
         </p>
 
-        <p>Жишээ:</p>
-        <pre><code>useEffect(() => {
+        <p class="mb-4">Жишээ:</p>
+        <pre
+          class="bg-gray-900 text-cyan-400 p-4 rounded-lg overflow-x-auto mb-4 font-mono"
+        ><code class="bg-gray-800 px-1 rounded text-cyan-400">useEffect(() => {
   console.log('Component mounted');
   // Энд өгөгдөл татах эсвэл үзүүлэлт тохируулах
   
@@ -69,19 +118,24 @@ setCount(count + 1); // count утгыг 1 болгоно</code></pre>
       </section>
 
       <section>
-        <h3>useReducer</h3>
-        <p>
-          <code>useReducer</code> нь <code>useState</code>-ээс илүү нарийн төлөв
-          удирдах боломжтой React hook юм. Энэ нь Redux-ийн reducer загвараас
-          санаа авч бүтээгдсэн.
+        <h3 class="text-xl font-bold mb-4">useReducer</h3>
+        <p class="mb-4">
+          <code class="bg-gray-800 px-1 rounded text-cyan-400">useReducer</code>
+          нь
+          <code class="bg-gray-800 px-1 rounded text-cyan-400">useState</code
+          >-ээс илүү нарийн төлөв удирдах боломжтой React hook юм. Энэ нь
+          Redux-ийн reducer загвараас санаа авч бүтээгдсэн.
         </p>
-        <p>
-          <code>useReducer</code> ашиглан та <strong>reducer функц</strong>-ийг
-          тодорхойлж өгдөг бөгөөд энэ функц одоогийн төлөв болон
-          <strong>action</strong> (үйлдэл)-ийг авч шинэ төлөв буцаадаг.
+        <p class="mb-4">
+          <code class="bg-gray-800 px-1 rounded text-cyan-400">useReducer</code>
+          ашиглан та <strong>reducer функц</strong>-ийг тодорхойлж өгдөг бөгөөд
+          энэ функц одоогийн төлөв болон <strong>action</strong> (үйлдэл)-ийг
+          авч шинэ төлөв буцаадаг.
         </p>
-        <p>Хэрэглэх жишээ:</p>
-        <pre><code>const [state, dispatch] = useReducer(reducer, initialState);
+        <p class="mb-4">Хэрэглэх жишээ:</p>
+        <pre
+          class="bg-gray-900 text-cyan-400 p-4 rounded-lg overflow-x-auto mb-4 font-mono"
+        ><code class="bg-gray-800 px-1 rounded text-cyan-400">const [state, dispatch] = useReducer(reducer, initialState);
 
 function reducer(state, action) {
   switch (action.type) {
@@ -95,7 +149,7 @@ function reducer(state, action) {
 }
 
 dispatch({ type: 'increment' }); // Үйлдлийг илгээж төлөв шинэчилнэ</code></pre>
-        <p>
+        <p class="mb-4">
           Энэхүү загвар нь өмнөх төлөв дээр тулгуурласан эсвэл олон холбоотой
           утгуудтай төлөвтэй ажиллахад тохиромжтой. Тухайлбал, нарийн формууд
           эсвэл олон шаттай процессуудад ашиглагддаг.
@@ -103,29 +157,33 @@ dispatch({ type: 'increment' }); // Үйлдлийг илгээж төлөв ш�
       </section>
 
       <section>
-        <h3>use</h3>
-        <p>
-          <code>use</code> функц нь React v18+ хувилбарт нэвтрүүлсэн шинэ бөгөөд
-          туршилтын React API бөгөөд таныг promise-ууд эсвэл Серверийн
-          бүрэлдэхүүн хэсэг эсвэл туршилтын үйлчлүүлэгчийн онцлог зэрэг асинхрон
-          эх сурвалжуудтай хэрхэн ажиллахыг хялбаршуулдаг.
+        <h3 class="text-xl font-bold mb-4">use</h3>
+        <p class="mb-4">
+          <code class="bg-gray-800 px-1 rounded text-cyan-400">use</code> функц
+          нь React v18+ хувилбарт нэвтрүүлсэн шинэ бөгөөд туршилтын React API
+          бөгөөд таныг promise-ууд эсвэл Серверийн бүрэлдэхүүн хэсэг эсвэл
+          туршилтын үйлчлүүлэгчийн онцлог зэрэг асинхрон эх сурвалжуудтай хэрхэн
+          ажиллахыг хялбаршуулдаг.
         </p>
-        <p>
+        <p class="mb-4">
           <strong>use()</strong> hook нь бүрэлдэхүүн хэсэг доторх promise эсвэл
           context утгыг шууд задалдаг.
         </p>
-        <p>
-          Одоогоор <code>use()</code> нь ихэвчлэн туршилтын болон дотоод React
-          онцлогт ашиглагдаж байгаа ч ирээдүйд асинхрон рендерийн гол хэсэг
-          болох төлөвтэй.
+        <p class="mb-4">
+          Одоогоор
+          <code class="bg-gray-800 px-1 rounded text-cyan-400">use()</code> нь
+          ихэвчлэн туршилтын болон дотоод React онцлогт ашиглагдаж байгаа ч
+          ирээдүйд асинхрон рендерийн гол хэсэг болох төлөвтэй.
         </p>
-        <p>
+        <p class="mb-4">
           React Hooks-ээс ялгаатай нь use-ийг loop болон if гэх мэт нөхцөлт
           хэллэг дотор дуудаж болно. React Hooks-ийн нэгэн адил хэрэглээг
           дууддаг функц нь Component эсвэл Hook байх ёстой.
         </p>
-        <p>Туршилтын жишээ:</p>
-        <pre><code>import { use } from 'react';
+        <p class="mb-4">Туршилтын жишээ:</p>
+        <pre
+          class="bg-gray-900 text-cyan-400 p-4 rounded-lg overflow-x-auto mb-4 font-mono"
+        ><code class="bg-gray-800 px-1 rounded text-cyan-400">import { use } from 'react';
 
 function MessageComponent({ messagePromise }) {
         const message = use(messagePromise);
@@ -133,38 +191,51 @@ function MessageComponent({ messagePromise }) {
       </section>
 
       <section>
-        <h3>API (Application Programming Interface)</h3>
-        <p>
+        <h3 class="text-xl font-bold mb-4">
+          API (Application Programming Interface)
+        </h3>
+        <p class="mb-4">
           API гэдэг нь програм хооронд мэдээлэл солилцох. Веб хөгжүүлэлтэд API
           нь ихэвчлэн сервер рүү хүсэлт илгээж, хариу авахад ашиглагддаг.
         </p>
 
-        <p>
+        <p class="mb-4">
           API-ууд сервер, өгөгдлийн сан, гуравдагч талын үйлчилгээтэй холбогддог
           динамик програм бүтээхэд зайлшгүй хэрэгтэй.
         </p>
       </section>
 
       <section>
-        <h3>Өгөгдөл татах (Data Fetching)</h3>
-        <p>
+        <h3 class="text-xl font-bold mb-4">Өгөгдөл татах (Data Fetching)</h3>
+        <p class="mb-4">
           Өгөгдөл татах гэдэг нь API эсвэл серверээс мэдээлэл авч ашиглах
           процесс юм.
         </p>
-        <p>Ердийн алхмууд:</p>
-        <ol>
+        <p class="mb-4">Ердийн алхмууд:</p>
+        <ol class="list-disc pl-8">
           <li>
-            Компонент үүсэх үед <code>useEffect</code> ашиглан хүсэлт эхлүүлэх
+            Компонент үүсэх үед
+            <code class="bg-gray-800 px-1 rounded text-cyan-400"
+              >useEffect</code
+            >
+            ашиглан хүсэлт эхлүүлэх
           </li>
           <li>
-            <code>fetch()</code> эсвэл <code>axios</code> зэрэг library ашиглан
-            өгөгдөл авах
+            <code class="bg-gray-800 px-1 rounded text-cyan-400">fetch()</code>
+            эсвэл
+            <code class="bg-gray-800 px-1 rounded text-cyan-400">axios</code>
+            зэрэг library ашиглан өгөгдөл авах
           </li>
-          <li><code>useState</code> ашиглан өгөгдлийг төлөвд хадгалах</li>
+          <li>
+            <code class="bg-gray-800 px-1 rounded text-cyan-400">useState</code>
+            ашиглан өгөгдлийг төлөвд хадгалах
+          </li>
           <li>Өгөгдөлд тулгуурлан UI-г дүрслэх</li>
         </ol>
-        <p>Жишээ:</p>
-        <pre><code>import React, { useState, useEffect } from 'react';
+        <p class="mb-4">Жишээ:</p>
+        <pre
+          class="bg-gray-900 text-cyan-400 p-4 rounded-lg overflow-x-auto mb-4 font-mono"
+        ><code class="bg-gray-800 px-1 rounded text-cyan-400">import React, { useState, useEffect } from 'react';
 
 function UsersList() {
   const [users, setUsers] = useState([]);
@@ -198,7 +269,7 @@ function UsersList() {
     &lt;/ul&gt;
   );
 }</code></pre>
-        <p>
+        <p class="mb-4">
           Энэ загвар нь таны апп-д гадаад эх сурвалжаас динамикаар өгөгдөл
           дүрслэх боломж олгодог.
         </p>

@@ -4,125 +4,222 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>task1</title>
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              gradient: "gradient 2s ease infinite",
+            },
+            keyframes: {
+              gradient: {
+                "0%, 100%": {
+                  "background-position": "0% 50%",
+                },
+                "50%": {
+                  "background-position": "100% 50%",
+                },
+              },
+            },
+          },
+        },
+      };
+    </script>
   </head>
-  <body>
-    <header>
-      <h1>Today we are going to learn about JavaScript</h1>
+  <body
+    class="m-0 p-4 font-sans text-white bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 bg-[length:400%_400%] animate-gradient min-h-screen"
+  >
+    <header class="p-4 rounded-lg mb-6 shadow-lg bg-black">
+      <h1 class="text-2xl font-bold">
+        Today we are going to learn about JavaScript
+      </h1>
     </header>
-    <nav>
-      <a href="index.html">JavaScript</a>
-      <a href="react.html">React</a>
+
+    <nav
+      class="p-4 rounded-lg mb-6 shadow-lg bg-black bg-opacity-50 text-center"
+    >
+      <a
+        href="index.html"
+        class="text-white mx-5 no-underline font-bold relative group transition-colors hover:text-cyan-400"
+      >
+        JavaScript
+        <span
+          class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"
+        ></span>
+      </a>
+      <a
+        href="react.html"
+        class="text-white mx-5 no-underline font-bold relative group transition-colors hover:text-cyan-400"
+      >
+        React
+        <span
+          class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"
+        ></span>
+      </a>
     </nav>
-    <div class="tasks">
-      <p>Here are the tasks to do:</p>
-      <ul>
+
+    <!-- Tasks Section -->
+    <div class="p-4 rounded-lg mb-6 shadow-lg bg-black bg-opacity-30">
+      <p class="mb-2">Here are the tasks to do:</p>
+      <ul class="list-disc pl-8">
         <li>Datatypes</li>
         <li>Functions</li>
         <li>Promises</li>
       </ul>
     </div>
 
-    <div class="topics">
-      <div class="datatypes">
-        <h2>Datatypes</h2>
-        <p>JavaScript 8 ширхэг өгөгдлийн төрөлтэй:</p>
-        <ol>
-          <li><strong>String</strong> - Example: <code>"Hello"</code></li>
-          <li><strong>Number</strong> - Example: <code>42, 3.14</code></li>
-          <li>
+    <!-- Topics Section -->
+    <div class="flex flex-wrap gap-8">
+      <!-- Datatypes Section -->
+      <div
+        class="flex-1 min-w-0 lg:basis-5/12 p-4 rounded-lg shadow-lg bg-black bg-opacity-30"
+      >
+        <h2 class="text-xl font-bold mb-4">Datatypes</h2>
+        <p class="mb-4">JavaScript 8 ширхэг өгөгдлийн төрөлтэй:</p>
+        <ol class="list-decimal pl-6 mb-6">
+          <li class="mb-2">
+            <strong>String</strong> - Example:
+            <code class="bg-gray-800 px-1 rounded text-cyan-400">"Hello"</code>
+          </li>
+          <li class="mb-2">
+            <strong>Number</strong> - Example:
+            <code class="bg-gray-800 px-1 rounded text-cyan-400">42, 3.14</code>
+          </li>
+          <li class="mb-2">
             <strong>BigInt</strong> - Example:
-            <code>12345678901234567890n</code>
+            <code class="bg-gray-800 px-1 rounded text-cyan-400"
+              >12345678901234567890n</code
+            >
           </li>
-          <li>
-            <strong>Boolean</strong> - Example: <code>true</code>,
-            <code>false</code>
+          <li class="mb-2">
+            <strong>Boolean</strong> - Example:
+            <code class="bg-gray-800 px-1 rounded text-cyan-400">true</code>,
+            <code class="bg-gray-800 px-1 rounded text-cyan-400">false</code>
           </li>
-          <li><strong>Undefined</strong> - Example: <code>let a;</code></li>
-          <li><strong>Null</strong> - Example: <code>let x = null;</code></li>
-          <li><strong>Symbol</strong> - Example: <code>Symbol("id")</code></li>
-          <li>
+          <li class="mb-2">
+            <strong>Undefined</strong> - Example:
+            <code class="bg-gray-800 px-1 rounded text-cyan-400">let a;</code>
+          </li>
+          <li class="mb-2">
+            <strong>Null</strong> - Example:
+            <code class="bg-gray-800 px-1 rounded text-cyan-400"
+              >let x = null;</code
+            >
+          </li>
+          <li class="mb-2">
+            <strong>Symbol</strong> - Example:
+            <code class="bg-gray-800 px-1 rounded text-cyan-400"
+              >Symbol("id")</code
+            >
+          </li>
+          <li class="mb-2">
             <strong>Object</strong> - Example:
-            <code>{ name: "Erdem", age: 20 }</code>
+            <code class="bg-gray-800 px-1 rounded text-cyan-400"
+              >{ name: "Erdem", age: 20 }</code
+            >
           </li>
         </ol>
-        Ерөнхий ойлгомжтой гэж бодож байна.
+        <p class="mb-6">Ерөнхий ойлгомжтой гэж бодож байна.</p>
 
-        <div class="async">
-          <h2><code>async</code> and <code>await</code></h2>
-          <p>
+        <!-- Async/Await Section -->
+        <div class="mb-6">
+          <h2 class="text-xl font-bold mb-4">
+            <code class="bg-gray-800 px-1 rounded text-cyan-400">async</code>
+            and
+            <code class="bg-gray-800 px-1 rounded text-cyan-400">await</code>
+          </h2>
+          <p class="mb-4">
             "async and await нь promise-г бичихэд илүү амархан болгодог"<br />
             async makes a function return a Promise <br />
             await makes a function wait for as Promise
           </p>
-          <h3>async syntax:</h3>
-          <pre><code>async function myFunction() { 
-        return "Hello"; 
-    }</code></pre>
 
-          <pre><code>function myFunction() {
-      return Promise.resolve("Hello");
-    }</code></pre>
-        </div>
-
-        <h3>await syntax:</h3>
-        <p>
-          The <code>await</code> нь зөвхөн <code>async</code> функц дотор
-          ашиглагдана. Функцийг түр зогсоож promise-г биелэхийг хүлээнэ.
-        </p>
-
-        <pre><code>
-    async function myDisplay() {
-      let myPromise = new Promise(function(resolve, reject) {
-        resolve("I love You !!");
-      });
-      document.getElementById("demo").innerHTML = await myPromise;
-    }
-        
-    myDisplay();</code></pre>
-      </div>
-
-      <div class="functions">
-        <h2>Functions</h2>
-        <p>
-          JavaScript функц нь даалгаврыг гүйцэтгэхэд зориулагдсан кодын блок.
-        </p>
-        <p>Дуудагдаж байж ажиллана.</p>
-
-        <pre><code>// 2 тоо үржих
-function myFunction(p1, p2) {
-  return p1 * p2;
+          <h3 class="text-lg font-semibold mb-2">async syntax:</h3>
+          <pre
+            class="bg-gray-900 text-cyan-400 p-4 rounded-lg overflow-x-auto mb-4 font-mono"
+          ><code>async function myFunction() { 
+    return "Hello"; 
 }</code></pre>
 
-        <pre><code>// F to C
+          <pre
+            class="bg-gray-900 text-cyan-400 p-4 rounded-lg overflow-x-auto mb-4 font-mono"
+          ><code>function myFunction() {
+    return Promise.resolve("Hello");
+}</code></pre>
+        </div>
+
+        <h3 class="text-lg font-semibold mb-2">await syntax:</h3>
+        <p class="mb-4">
+          The
+          <code class="bg-gray-800 px-1 rounded text-cyan-400">await</code> нь
+          зөвхөн
+          <code class="bg-gray-800 px-1 rounded text-cyan-400">async</code>
+          функц дотор ашиглагдана. Функцийг түр зогсоож promise-г биелэхийг
+          хүлээнэ.
+        </p>
+
+        <pre
+          class="bg-gray-900 text-cyan-400 p-4 rounded-lg overflow-x-auto mb-4 font-mono"
+        ><code>async function myDisplay() {
+    let myPromise = new Promise(function(resolve, reject) {
+        resolve("I love You !!");
+    });
+    document.getElementById("demo").innerHTML = await myPromise;
+}
+
+myDisplay();</code></pre>
+      </div>
+
+      <!-- Functions Section -->
+      <div
+        class="flex-1 min-w-0 lg:basis-5/12 p-4 rounded-lg shadow-lg bg-black bg-opacity-30"
+      >
+        <h2 class="text-xl font-bold mb-4">Functions</h2>
+        <p class="mb-2">
+          JavaScript функц нь даалгаврыг гүйцэтгэхэд зориулагдсан кодын блок.
+        </p>
+        <p class="mb-4">Дуудагдаж байж ажиллана.</p>
+
+        <pre
+          class="bg-gray-900 text-cyan-400 p-4 rounded-lg overflow-x-auto mb-4 font-mono"
+        ><code>// 2 тоо үржих
+function myFunction(p1, p2) {
+    return p1 * p2;
+}</code></pre>
+
+        <pre
+          class="bg-gray-900 text-cyan-400 p-4 rounded-lg overflow-x-auto mb-4 font-mono"
+        ><code>// F to C
 function toCelsius(fahrenheit) {
-  return (5/9) * (fahrenheit-32);
+    return (5/9) * (fahrenheit-32);
 }
 // хувьсагчид утга аа олгох 
 let value = toCelsius(100);</code></pre>
 
-        <p>
+        <p class="mb-4">
           Функцуудыг мэддэг гэж бодсон ч мэддэггүй байж ээ. Arrow Функцийг
           бичихийн хажуугаар бусад бичиглэлүүдийн ялгааг оруулахаар шийдлээ.
         </p>
 
-        <pre><code>
-// Constructor
+        <pre
+          class="bg-gray-900 text-cyan-400 p-4 rounded-lg overflow-x-auto mb-4 font-mono"
+        ><code>// Constructor
 const multiply = new Function("x", "y", "return x * y");
 
 // Declaration
 function multiply(x, y) {
-  return x * y;
+    return x * y;
 } // No need for semicolon here
 
 // Expression; the function is anonymous but assigned to a variable
 const multiply = function (x, y) {
-  return x * y;
+    return x * y;
 };
 
 // Expression; the function has its own name
 const multiply = function funcName(x, y) {
-  return x * y;
+    return x * y;
 };
 
 // Arrow function
@@ -130,28 +227,36 @@ const multiply = (x, y) => x * y;
 
 // Method
 const obj = {
-  multiply(x, y) {
-    return x * y;
-  },
-};
-</code></pre>
+    multiply(x, y) {
+        return x * y;
+    },
+};</code></pre>
       </div>
     </div>
 
-    <div class="brackets">
-      <h3><center>Square and Curly Brackets</center></h3>
-      <div class="bracket-columns">
-        <div class="bracket-column">
-          <p><strong>Square Brackets</strong></p>
-          <p>[] is an empty array (i.e. with zero items).</p>
-          <ul>
+    <!-- Brackets Section -->
+    <div class="mt-8 p-4 rounded-lg shadow-lg bg-black bg-opacity-30">
+      <h3 class="text-lg font-bold text-center mb-6">
+        Square and Curly Brackets
+      </h3>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <div
+          class="flex-1 min-w-64 bg-teal-600 bg-opacity-30 text-center p-4 rounded-lg shadow-inner border border-cyan-400 border-opacity-30"
+        >
+          <p class="font-bold mb-2">Square Brackets</p>
+          <p class="mb-4">[] is an empty array (i.e. with zero items).</p>
+          <ul class="text-left pl-6 list-disc">
             <li>Array Access:</li>
           </ul>
         </div>
-        <div class="bracket-column">
-          <p><strong>Curly Brackets</strong></p>
-          <p>{} is an empty object (i.e. with zero key-value pairs).</p>
-          <ul>
+        <div
+          class="flex-1 min-w-64 bg-teal-600 bg-opacity-30 text-center p-4 rounded-lg shadow-inner border border-cyan-400 border-opacity-30"
+        >
+          <p class="font-bold mb-2">Curly Brackets</p>
+          <p class="mb-4">
+            {} is an empty object (i.e. with zero key-value pairs).
+          </p>
+          <ul class="text-left pl-6 list-disc">
             <li>Object Access:</li>
           </ul>
         </div>
